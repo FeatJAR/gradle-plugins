@@ -1,0 +1,51 @@
+/**
+ * Contains conventions shared between Gradle builds that compile Java code.
+ */
+
+plugins {
+    id 'java'
+    //id 'maven-publish'
+}
+
+repositories {
+    mavenCentral()
+//    mavenLocal()
+//    maven {
+//        url = uri('https://repo.maven.apache.org/maven2/')
+//    }
+
+//    maven {
+//        url = uri('https://repo.clojars.org/')
+//    }
+}
+
+group = 'de.featjar'
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.9.0'
+}
+
+java {
+    sourceCompatibility = 1.11
+    withSourcesJar()
+    withJavadocJar()
+}
+
+test {
+    useJUnitPlatform()
+}
+
+task copyBinaries (type: Copy) {
+    from 'src/main/resources/bin/.'
+    into System.getProperty('user.home') + '/.featjar-bin'
+}
+tasks.matching { it != copyBinaries }.all { it.dependsOn copyBinaries }
+
+//publishing {
+//    publications {
+//        maven(MavenPublication) {
+//            from(components.java)
+//        }
+//    }
+//}
