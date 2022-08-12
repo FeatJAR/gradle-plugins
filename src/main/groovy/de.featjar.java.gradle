@@ -4,19 +4,11 @@
 
 plugins {
     id 'java'
-    //id 'maven-publish'
+    id 'maven-publish'
 }
 
 repositories {
     mavenCentral()
-//    mavenLocal()
-//    maven {
-//        url = uri('https://repo.maven.apache.org/maven2/')
-//    }
-
-//    maven {
-//        url = uri('https://repo.clojars.org/')
-//    }
 }
 
 group = 'de.featjar'
@@ -42,10 +34,10 @@ task copyBinaries (type: Copy) {
 }
 tasks.matching { it != copyBinaries }.all { it.dependsOn copyBinaries }
 
-//publishing {
-//    publications {
-//        maven(MavenPublication) {
-//            from(components.java)
-//        }
-//    }
-//}
+publishing {
+    publications {
+        maven(MavenPublication) {
+            from components.java
+        }
+    }
+}
