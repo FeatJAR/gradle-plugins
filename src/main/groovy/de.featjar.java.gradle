@@ -5,6 +5,7 @@
 plugins {
     id 'java'
     id 'maven-publish'
+    id 'com.github.hierynomus.license'
 }
 
 repositories {
@@ -40,4 +41,17 @@ publishing {
             from components.java
         }
     }
+}
+
+license {
+    header = null
+    headerURI = DeFeatjarJavaPlugin.class.getResource('licenseHeaders/lgpl30.txt').toURI()
+    ext {
+        program = rootProject.name
+        year = Calendar.getInstance().get(Calendar.YEAR)
+        author = 'FeatJAR development team'
+        url = 'https://github.com/FeatJAR'
+    }
+    include "**/*.java"
+    ignoreFailures true
 }
