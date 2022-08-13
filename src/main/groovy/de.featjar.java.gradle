@@ -40,7 +40,7 @@ tasks.matching { it != copyBinaries }.all { it.dependsOn copyBinaries }
 publishing {
     publications {
         maven(MavenPublication) {
-            from components.java
+            artifact jar // todo: improve version handling
         }
     }
 }

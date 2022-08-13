@@ -13,5 +13,4 @@ dependencies {
     implementation 'com.github.spotbugs.snom:spotbugs-gradle-plugin:5.0.9'
 }
 
-tasks.register('licenseFormat') {}
-tasks.register('spotlessApply') {}
+['licenseFormat', 'spotlessApply', 'publishToMavenLocal'].each { tasks.register(it) {} }
