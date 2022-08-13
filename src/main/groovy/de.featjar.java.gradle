@@ -7,6 +7,7 @@ plugins {
     id 'maven-publish'
     id 'com.github.hierynomus.license'
     id 'com.diffplug.spotless'
+    id 'com.github.spotbugs'
 }
 
 repositories {
@@ -67,4 +68,25 @@ spotless {
         removeUnusedImports()
         palantirJavaFormat() // todo: discuss format
     }
+}
+
+def spotbugsConfiguration = {
+    reports {
+        html {
+            enabled = true
+            stylesheet = 'fancy-hist.xsl'
+        }
+    }
+}
+
+spotbugs {
+    ignoreFailures = true // todo: discuss whether to enable always
+}
+
+spotbugsMain {
+    configure spotbugsConfiguration
+}
+
+spotbugsTest {
+    configure spotbugsConfiguration
 }
