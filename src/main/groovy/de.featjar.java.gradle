@@ -54,4 +54,7 @@ license {
     }
     include "**/*.java"
     ignoreFailures true
+    mapping {
+        java='SLASHSTAR_STYLE'
+    }
 }
