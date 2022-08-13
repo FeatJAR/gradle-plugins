@@ -6,6 +6,7 @@ plugins {
     id 'java'
     id 'maven-publish'
     id 'com.github.hierynomus.license'
+    id 'com.diffplug.spotless'
 }
 
 repositories {
@@ -53,8 +54,17 @@ license {
         url = 'https://github.com/FeatJAR'
     }
     include "**/*.java"
-    ignoreFailures true
+    ignoreFailures true // todo: discuss whether to enable always
     mapping {
         java='SLASHSTAR_STYLE'
+    }
+}
+
+spotless {
+    enforceCheck = false // todo: discuss whether to enable always
+    java {
+        importOrder()
+        removeUnusedImports()
+        palantirJavaFormat()
     }
 }
