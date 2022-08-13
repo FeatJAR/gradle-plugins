@@ -65,6 +65,6 @@ spotless {
     java {
         importOrder()
         removeUnusedImports()
-        palantirJavaFormat()
+        palantirJavaFormat() // todo: discuss format
     }
 }

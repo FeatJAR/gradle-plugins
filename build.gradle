@@ -13,3 +13,4 @@ dependencies {
 }
 
 tasks.register('licenseFormat') {}
+tasks.register('spotlessApply') {}
