@@ -8,6 +8,7 @@ plugins {
     id 'com.github.hierynomus.license'
     id 'com.diffplug.spotless'
     id 'com.github.spotbugs'
+    id 'pl.allegro.tech.build.axion-release'
 }
 
 repositories {
@@ -15,6 +16,7 @@ repositories {
 }
 
 group = 'de.featjar'
+version = scmVersion.version
 
 dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.0'
@@ -40,7 +42,7 @@ tasks.matching { it != copyBinaries }.all { it.dependsOn copyBinaries }
 publishing {
     publications {
         maven(MavenPublication) {
-            artifact jar // todo: improve version handling
+            from(components.java)
         }
     }
 }
