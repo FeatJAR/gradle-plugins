@@ -11,7 +11,7 @@ plugins {
 }
 
 application {
-    mainClass = 'de.featjar.util.cli.CLI'
+    mainClass = 'de.featjar.base.FeatJAR'
 }
 
 shadowJar {
