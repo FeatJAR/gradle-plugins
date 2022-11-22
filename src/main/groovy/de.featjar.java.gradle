@@ -58,18 +58,18 @@ license {
         url = 'https://github.com/FeatJAR'
     }
     include "**/*.java"
-    ignoreFailures true // todo: discuss whether to enable always
+    ignoreFailures true // TODO: discuss whether to enable always
     mapping {
         java='SLASHSTAR_STYLE'
     }
 }
 
 spotless {
-    enforceCheck = false // todo: discuss whether to enable always
+    enforceCheck = false // TODO: discuss whether to enable always
     java {
         importOrder()
         removeUnusedImports()
-        palantirJavaFormat() // todo: discuss format
+        palantirJavaFormat() // TODO: discuss format
     }
 }
 
@@ -83,7 +83,7 @@ def spotbugsConfiguration = {
 }
 
 spotbugs {
-    ignoreFailures = true // todo: discuss whether to enable always
+    ignoreFailures = true // TODO: discuss whether to enable always
 }
 
 spotbugsMain {
