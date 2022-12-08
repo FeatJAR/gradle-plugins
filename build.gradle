@@ -1,5 +1,7 @@
 plugins {
     id 'groovy-gradle-plugin'
+    id "com.github.hierynomus.license" version "0.16.1"
+    id "com.diffplug.spotless" version "6.9.1"
 }
 
 repositories {
@@ -12,4 +14,9 @@ dependencies {
     implementation 'com.diffplug.spotless:spotless-plugin-gradle:6.9.1'
     implementation 'com.github.spotbugs.snom:spotbugs-gradle-plugin:5.0.9'
     implementation 'pl.allegro.tech.build:axion-release-plugin:1.14.0'
+}
+
+license {
+    header = project.file('COPYING')
+    include "**/*.java"
 }
