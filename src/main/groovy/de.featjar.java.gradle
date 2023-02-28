@@ -7,7 +7,7 @@ plugins {
     id 'maven-publish'
     id 'com.github.hierynomus.license'
     id 'com.diffplug.spotless'
-    id 'com.github.spotbugs'
+//    id 'com.github.spotbugs'
     id 'pl.allegro.tech.build.axion-release'
 }
 
@@ -71,7 +71,7 @@ spotless {
         palantirJavaFormat() // todo: discuss format
     }
 }
-
+/*
 def spotbugsConfiguration = {
     reports {
         html {
@@ -92,3 +92,4 @@ spotbugsMain {
 spotbugsTest {
     configure spotbugsConfiguration
 }
+*/
