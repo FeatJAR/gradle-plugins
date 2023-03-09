@@ -93,3 +93,7 @@ spotbugsMain {
 spotbugsTest {
     configure spotbugsConfiguration
 }
+
+javadoc {
+    options.addBooleanOption('Xdoclint:none', true)
+}
