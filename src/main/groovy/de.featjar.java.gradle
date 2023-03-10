@@ -95,5 +95,5 @@ spotbugsTest {
 }
 
 javadoc {
-    options.addBooleanOption('Xdoclint:none', true)
+    failOnError = false
 }
