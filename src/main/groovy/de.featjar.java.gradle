@@ -76,7 +76,7 @@ spotless {
 def spotbugsConfiguration = {
     reports {
         html {
-            enabled = true
+            enabled = false // TODO: fix spotbugs config and re-enable
             stylesheet = 'fancy-hist.xsl'
         }
     }
