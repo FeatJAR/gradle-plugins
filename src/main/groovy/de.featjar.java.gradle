@@ -26,7 +26,6 @@ dependencies {
 java {
     sourceCompatibility = 1.11
     withSourcesJar()
-    withJavadocJar()
 }
 
 test {
@@ -75,7 +74,7 @@ spotless {
 def spotbugsConfiguration = {
     reports {
         html {
-            enabled = true
+            enabled = false
             stylesheet = 'fancy-hist.xsl'
         }
     }
