@@ -5,7 +5,7 @@
 plugins {
     id 'java'
     id 'maven-publish'
-    id 'com.github.hierynomus.license'
+    id 'com.github.hierynomus.license-base'
     id 'com.diffplug.spotless'
     id 'com.github.spotbugs'
     id 'pl.allegro.tech.build.axion-release'
@@ -52,13 +52,13 @@ license {
     header = null
     headerURI = DeFeatjarJavaPlugin.class.getResource('licenseHeaders/lgpl30.txt').toURI()
     ext {
-        program = rootProject.name
-        year = Calendar.getInstance().get(Calendar.YEAR)
-        author = 'FeatJAR development team'
-        url = 'https://github.com/FeatJAR'
+        licence_program = rootProject.name
+        licence_year = Calendar.getInstance().get(Calendar.YEAR)
+        licence_author = 'FeatJAR-Development-Team'
+        licence_url = 'https://github.com/FeatJAR'
     }
     include "**/*.java"
-    ignoreFailures true // TODO: discuss whether to enable always
+    ignoreFailures false // TODO: discuss whether to enable always
     mapping {
         java='SLASHSTAR_STYLE'
     }
@@ -74,9 +74,10 @@ spotless {
 }
 
 def spotbugsConfiguration = {
+    effort = 'max'
     reports {
         html {
-            enabled = false // TODO: fix spotbugs config and re-enable
+            enabled = true // TODO: fix spotbugs config and re-enable
             stylesheet = 'fancy-hist.xsl'
         }
     }
@@ -96,4 +97,8 @@ spotbugsTest {
 
 javadoc {
     failOnError = false
+    javadocTool = javaToolchains.javadocToolFor {
+        languageVersion.set(JavaLanguageVersion.of(20))
+    }
+    javadoc.options.addStringOption('Xdoclint:none', '-quiet')
 }
