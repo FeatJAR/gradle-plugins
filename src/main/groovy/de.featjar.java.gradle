@@ -98,7 +98,7 @@ spotbugsTest {
 javadoc {
     failOnError = false
     javadocTool = javaToolchains.javadocToolFor {
-        languageVersion.set(JavaLanguageVersion.of(20))
+        languageVersion.set(JavaLanguageVersion.of(21))
     }
     javadoc.options.addStringOption('Xdoclint:none', '-quiet')
 }
