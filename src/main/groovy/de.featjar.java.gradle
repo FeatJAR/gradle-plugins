@@ -25,6 +25,10 @@ dependencies {
 }
 
 java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+        vendor = JvmVendorSpec.ORACLE
+    }
     sourceCompatibility = 1.11
     withSourcesJar()
     withJavadocJar()
@@ -98,7 +102,8 @@ spotbugsTest {
 javadoc {
     failOnError = false
     javadocTool = javaToolchains.javadocToolFor {
-        languageVersion.set(JavaLanguageVersion.of(21))
+        languageVersion = JavaLanguageVersion.of(17)
+        vendor = JvmVendorSpec.ORACLE
     }
     javadoc.options.addStringOption('Xdoclint:none', '-quiet')
 }
