@@ -19,3 +19,21 @@ shadowJar {
         resource = 'extensions.xml'
     }
 }
+
+project.tasks.register('mergeSources', Zip) {
+    archiveBaseName = project.name
+    archiveClassifier = 'all-sources'
+    archiveVersion = project.version
+    destinationDirectory.set(project.layout.buildDirectory.dir('libs'))
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    from {
+        def dependencyNames = project.configurations.collectMany { it.dependencies }
+        def filteredDependencyNames = dependencyNames.findAll { projectDependency ->
+            file("../${projectDependency.name}").exists()
+        }
+        def dependencySourceDirectories = filteredDependencyNames.collect {
+            file("../${it.name}/src/")
+        }
+        dependencySourceDirectories.unique(true)
+    }
+}
