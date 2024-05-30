@@ -1,7 +1,6 @@
 /**
  * Creates self-contained JAR files that are executable on the command line (fat/uber JAR).
  */
-
 import com.github.jengelman.gradle.plugins.shadow.transformers.XmlAppendingTransformer
 
 plugins {
@@ -20,7 +19,7 @@ shadowJar {
     }
 }
 
-project.tasks.register('mergeSources', Zip) {
+project.tasks.register('allSources', Zip) {
     archiveBaseName = project.name
     archiveClassifier = 'all-sources'
     archiveVersion = project.version
@@ -28,12 +27,10 @@ project.tasks.register('mergeSources', Zip) {
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
     from {
         def dependencyNames = project.configurations.collectMany { it.dependencies }
-        def filteredDependencyNames = dependencyNames.findAll { projectDependency ->
-            file("../${projectDependency.name}").exists()
-        }
-        def dependencySourceDirectories = filteredDependencyNames.collect {
-            file("../${it.name}/src/")
-        }
-        dependencySourceDirectories.unique(true)
+        dependencyNames.stream()
+            .map(d -> d.name)
+            .distinct()
+            .map(n -> file("../${n}/src/main/java"))
+            .filter(f -> f.exists()).toList();
     }
 }
